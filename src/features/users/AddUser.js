@@ -6,6 +6,8 @@ import Button from "../../components/Button"
 import TextArea from "../../components/TextArea";
 import TextField from "../../components/TextField"
 import { addUser } from "./userSlice"
+import ReactQuill from 'react-quill';
+import TextEditor from "../../components/TextEditor";
 
 const AddUser = () => {
   const dispatch = useDispatch();
@@ -28,6 +30,11 @@ const AddUser = () => {
     }));
     navigate('/');
   }
+
+  const [value, setValue] = useState("");
+  const getValue = (value) => {
+    setValue(value);
+  };
 
   return (
     <div className="mt-10 max-w-xl mx-auto">
@@ -52,16 +59,16 @@ const AddUser = () => {
         inputProps={{ type: 'hoby', placeholder: 'Masukan Hoby Anda' }}
       />
       <br />
-      <TextArea
-        label="Alamat"
-        value={values.alamat}
-        onChange={(e) => setValues({ ...values, alamat: e.target.value })}
-        inputProps={{ type: 'alamat', placeholder: 'Masukan Alamat Anda' }}
-      />
+      <TextEditor 
+      initialValue="" 
+      value={values.alamat}
+      onChange={(e) => setValues({ ...values, alamat: e.target.value })} />
       <br />
       <Button onClick={handleAddUser}>Submit</Button>
     </div>
   )
 }
+
+
 
 export default AddUser
