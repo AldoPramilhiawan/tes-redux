@@ -14,4 +14,4 @@ const TextField = ({ label, inputProps, onChange, value }) => {
   )
 }
 
-export default TextField
+export default TextField;
