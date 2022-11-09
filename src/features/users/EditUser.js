@@ -11,18 +11,22 @@ const EditUser = () => {
   const users = useSelector(store => store.users);
   const navigate = useNavigate();
   const existingUser = users.filter(user => user.id === params.id);
-  const { name, email } = existingUser[0];
+  const { name, umur, hoby, alamat } = existingUser[0];
   const [values, setValues] = useState({
     name,
-    email
+    umur,
+    hoby,
+    alamat
   });
 
   const handleEditUser = () => {
-    setValues({ name: '', email: '' });
+    setValues({ name: '', umur: '', hoby: '', alamat: '' });
     dispatch(editUser({
       id: params.id,
       name: values.name,
-      email: values.email
+      umur: values.umur,
+      hoby: values.hoby,
+      alamat: values.alamat
     }));
     navigate('/');
   }
@@ -37,10 +41,24 @@ const EditUser = () => {
       />
       <br />
       <TextField
-        label="Email"
-        value={values.email}
-        onChange={(e) => setValues({ ...values, email: e.target.value })}
-        inputProps={{ type: 'email', placeholder: 'jhondoe@mail.com' }}
+        label="Umur"
+        value={values.umur}
+        onChange={(e) => setValues({ ...values, umur: e.target.value })}
+        inputProps={{ type: 'umur', placeholder: '25' }}
+      />
+      <br />
+      <TextField
+        label="Hoby"
+        value={values.hoby}
+        onChange={(e) => setValues({ ...values, hoby: e.target.value })}
+        inputProps={{ type: 'hoby', placeholder: 'nonton anime' }}
+      />
+      <br />
+      <TextField
+        label="Alamat"
+        value={values.alamat}
+        onChange={(e) => setValues({ ...values, alamat: e.target.value })}
+        inputProps={{ type: 'alamat', placeholder: 'pemalang' }}
       />
       <Button onClick={handleEditUser}>Edit</Button>
     </div>
